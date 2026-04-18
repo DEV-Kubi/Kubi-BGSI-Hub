@@ -6,6 +6,9 @@ do
 		can_resize = true,
 	})
 
+    local Client = ReplicatedStorage.Client
+    local Tutorial = require(Client.Tutorial)
+
 	_G.MainTab = _G.Window:AddTab("Main")
     _G.FarmTab = _G.Window:AddTab("Farming")
     _G.WorldTab = _G.Window:AddTab("World")

@@ -1,9 +1,6 @@
 do
     _G.FarmTab:AddLabel("Farming")
 
-    local Client = ReplicatedStorage.Client
-    local Tutorial = require(Client.Tutorial)
-
     local turned = false
 
     local autoCollectPickups = _G.FarmTab:AddSwitch("Auto Collect Pickups", function(bool)
