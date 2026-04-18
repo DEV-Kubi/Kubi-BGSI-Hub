@@ -9,7 +9,7 @@ do
     _G.ReplicatedStorage = game:GetService("ReplicatedStorage")
 
     _G.Client = _G.ReplicatedStorage.Client
-    _G.Tutorial = require(Client.Tutorial)
+    _G.Tutorial = require(_G.Client.Tutorial)
 
 	_G.MainTab = _G.Window:AddTab("Main")
     _G.FarmTab = _G.Window:AddTab("Farming")
