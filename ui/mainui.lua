@@ -21,7 +21,7 @@ do
     end
 
     if _G.WorldTab then
-        loadstring(game:HttpGet(""))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/tabs/world/world.lua"))()
     end
 
     if _G.EggsTab then
