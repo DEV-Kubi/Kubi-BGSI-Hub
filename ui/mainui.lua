@@ -6,7 +6,9 @@ do
 		can_resize = true,
 	})
 
-    _G.Client = ReplicatedStorage.Client
+    _G.ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+    _G.Client = _G.ReplicatedStorage.Client
     _G.Tutorial = require(Client.Tutorial)
 
 	_G.MainTab = _G.Window:AddTab("Main")
