@@ -947,7 +947,7 @@ function library:FormatWindows()
 	format_windows()
 end
 
-function library:AddWindow(title, options)
+function _G.library:AddWindow(title, options)
 	windows = windows + 1
 	local dropdown_open = false
 	title = tostring(title or "New Window")
