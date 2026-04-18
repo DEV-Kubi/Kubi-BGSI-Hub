@@ -15,5 +15,5 @@ do
             bool = false
         end
 	end)
-	Switch:Set(false)
+	fastHatch:Set(false)
 end
