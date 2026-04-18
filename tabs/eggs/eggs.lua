@@ -1,6 +1,6 @@
 do
     local VirtualInputManager = game:GetService("VirtualInputManager")
-    _G.EggsTab:AddLabel("----------------------------------------------------------------------------------------------------------------------------------")
+    _G.EggsTab:AddLabel("")
     -- Misc
     _G.EggsTab:AddLabel("Egg Misc")
     local fastHatch = _G.EggsTab:AddSwitch("Fast Hatch", function(bool)
