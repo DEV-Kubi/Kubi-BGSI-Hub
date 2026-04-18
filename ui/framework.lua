@@ -4,7 +4,7 @@
 	by Singularity (V3rm @ King Singularity) (Discord @ Singularity#5490)
 --]]
 
-local ui_options = {
+_G.ui_options = {
 	main_color = Color3.fromRGB(41, 74, 122),
 	min_size = Vector2.new(400, 300),
 	toggle_key = Enum.KeyCode.RightShift,
@@ -827,7 +827,7 @@ local checks = {
 }
 
 UIS.InputBegan:Connect(function(input, gameProcessed)
-	if input.KeyCode == ((typeof(ui_options.toggle_key) == "EnumItem") and ui_options.toggle_key or Enum.KeyCode.RightShift) then
+	if input.KeyCode == ((typeof(_G.ui_options.toggle_key) == "EnumItem") and _G.ui_options.toggle_key or Enum.KeyCode.RightShift) then
 		if script.Parent then
 			if not checks.binding then
 				script.Parent.Enabled = not script.Parent.Enabled
@@ -951,7 +951,7 @@ function _G.library:AddWindow(title, options)
 	_G.windows = _G.windows + 1
 	local dropdown_open = false
 	title = tostring(title or "New Window")
-	options = (typeof(options) == "table") and options or ui_options
+	options = (typeof(options) == "table") and options or _G.ui_options
 	options.tween_time = 0.1
 
 	local Window = Prefabs:FindFirstChild("Window"):Clone()

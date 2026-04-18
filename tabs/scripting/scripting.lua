@@ -4,7 +4,7 @@ do
         ["source"] = "Lua",
     })
 
-    Console:Set("-- Lua Executor!\n")
+    _G.ScriptTab:AddLabel("---------------")
     print(Console:Get())
 
     local HA = _G.ScriptTab:AddHorizontalAlignment()
@@ -21,6 +21,7 @@ do
 		if key then
             task.wait(1)
             _G.Window["toggle_key"] = key
+            _G.ui_options["toggle_key"] = key
         end
 	end, {
 		["standard"] = Enum.KeyCode.RightShift
