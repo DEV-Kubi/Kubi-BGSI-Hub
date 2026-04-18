@@ -1,6 +1,7 @@
 do
     _G.FarmTab:AddLabel("Farming")
 
+    local Client = ReplicatedStorage.Client
     local Tutorial = require(Client.Tutorial)
 
     local turned = false
