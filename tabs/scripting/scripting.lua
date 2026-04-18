@@ -1,12 +1,12 @@
 do
-    _G.ScriptTab:AddLabel("------------------------------------------------------------------")
+    _G.ScriptTab:AddLabel("Executor")
+
+    _G.ScriptTab:AddLabel("-------------------------------------------------------------------------------------")
 
     local Console = _G.ScriptTab:AddConsole({
         ["y"] = 100,
         ["source"] = "Lua",
     })
-
-    _G.ScriptTab:AddLabel("------------------------------------------------------------------")
 
     local HA = _G.ScriptTab:AddHorizontalAlignment()
 
@@ -17,6 +17,10 @@ do
     HA:AddButton("Clear", function()
         Console:Set("")
     end)
+
+    _G.ScriptTab:AddLabel("-------------------------------------------------------------------------------------")
+
+    _G.ScriptTab:AddLabel("GUI Settings")
 
     _G.ScriptTab:AddKeybind("GUI Bind", function(key)
 		if key then
@@ -30,4 +34,6 @@ do
             if imgui then imgui:Destroy() end
         end
     end)
+
+    _G.ScriptTab:AddLabel("-------------------------------------------------------------------------------------")
 end
