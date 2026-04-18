@@ -896,11 +896,7 @@ local function ripple(button, x, y)
 	spawn(function()
 		button.ClipsDescendants = true
 
-		local circle = Prefabs:FindFirstChild("Circle")
-		
-		if circle then
-			circle:Clone()
-		end
+		local circle = Prefabs:FindFirstChild("Circle"):Clone()
 
 		circle.Parent = button
 		circle.ZIndex = 1000

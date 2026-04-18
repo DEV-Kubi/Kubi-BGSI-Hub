@@ -1,10 +1,12 @@
 do
+    _G.ScriptTab:AddLabel("------------------------------------------------------------------")
+
     local Console = _G.ScriptTab:AddConsole({
         ["y"] = 100,
         ["source"] = "Lua",
     })
 
-    _G.ScriptTab:AddLabel("---------------")
+    _G.ScriptTab:AddLabel("------------------------------------------------------------------")
     print(Console:Get())
 
     local HA = _G.ScriptTab:AddHorizontalAlignment()
