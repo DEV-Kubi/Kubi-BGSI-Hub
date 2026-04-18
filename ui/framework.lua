@@ -892,36 +892,6 @@ local function gMouse()
 	return Vector2.new(UIS:GetMouseLocation().X + 1, UIS:GetMouseLocation().Y - 35)
 end
 
-function _G.ripple(button, x, y)
-	spawn(function()
-		button.ClipsDescendants = true
-
-		local circle = Prefabs:FindFirstChild("Circle"):Clone()
-
-		circle.Parent = button
-		circle.ZIndex = 1000
-
-		local new_x = x - circle.AbsolutePosition.X
-		local new_y = y - circle.AbsolutePosition.Y
-		circle.Position = UDim2.new(0, new_x, 0, new_y)
-
-		local size = 0
-		if button.AbsoluteSize.X > button.AbsoluteSize.Y then
-			 size = button.AbsoluteSize.X * 1.5
-		elseif button.AbsoluteSize.X < button.AbsoluteSize.Y then
-			 size = button.AbsoluteSize.Y * 1.5
-		elseif button.AbsoluteSize.X == button.AbsoluteSize.Y then
-			size = button.AbsoluteSize.X * 1.5
-		end
-
-		circle:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, -size / 2, 0.5, -size / 2), "Out", "Quad", 0.5, false, nil)
-		_G.Resize(circle, {ImageTransparency = 1}, 0.5)
-
-		wait(0.5)
-		circle:Destroy()
-	end)
-end
-
 _G.windows = 0
 _G.library = {}
 
