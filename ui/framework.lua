@@ -836,7 +836,7 @@ UIS.InputBegan:Connect(function(input, gameProcessed)
 	end
 end)
 
-local function Resize(part, new, _delay)
+function _G.Resize(part, new, _delay)
 	_delay = _delay or 0.5
 	local tweenInfo = TweenInfo.new(_delay, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 	local tween = TweenService:Create(part, tweenInfo, new)
@@ -892,7 +892,7 @@ local function gMouse()
 	return Vector2.new(UIS:GetMouseLocation().X + 1, UIS:GetMouseLocation().Y - 35)
 end
 
-local function ripple(button, x, y)
+function _G.ripple(button, x, y)
 	spawn(function()
 		button.ClipsDescendants = true
 
@@ -915,7 +915,7 @@ local function ripple(button, x, y)
 		end
 
 		circle:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, -size / 2, 0.5, -size / 2), "Out", "Quad", 0.5, false, nil)
-		Resize(circle, {ImageTransparency = 1}, 0.5)
+		_G.Resize(circle, {ImageTransparency = 1}, 0.5)
 
 		wait(0.5)
 		circle:Destroy()
@@ -1022,13 +1022,13 @@ function _G.library:AddWindow(title, options)
 
 							--
 							if x >= options.min_size.X and y >= options.min_size.Y then
-								Resize(Window, {Size = UDim2.new(0, x, 0, y)}, options.tween_time)
+								_G.Resize(Window, {Size = UDim2.new(0, x, 0, y)}, options.tween_time)
 							elseif x >= options.min_size.X then
-								Resize(Window, {Size = UDim2.new(0, x, 0, options.min_size.Y)}, options.tween_time)
+								_G.Resize(Window, {Size = UDim2.new(0, x, 0, options.min_size.Y)}, options.tween_time)
 							elseif y >= options.min_size.Y then
-								Resize(Window, {Size = UDim2.new(0, options.min_size.X, 0, y)}, options.tween_time)
+								_G.Resize(Window, {Size = UDim2.new(0, options.min_size.X, 0, y)}, options.tween_time)
 							else
-								Resize(Window, {Size = UDim2.new(0, options.min_size.X, 0, options.min_size.Y)}, options.tween_time)
+								_G.Resize(Window, {Size = UDim2.new(0, options.min_size.X, 0, options.min_size.Y)}, options.tween_time)
 							end
 
 							RS.Heartbeat:Wait()
@@ -1067,8 +1067,8 @@ function _G.library:AddWindow(title, options)
 					Resizer.Active = false
 
 					oldy = Window.AbsoluteSize.Y
-					Resize(open_close, {Rotation = 0}, options.tween_time)
-					Resize(Window, {Size = UDim2.new(0, Window.AbsoluteSize.X, 0, 26)}, options.tween_time)
+					_G.Resize(open_close, {Rotation = 0}, options.tween_time)
+					_G.Resize(Window, {Size = UDim2.new(0, Window.AbsoluteSize.X, 0, 26)}, options.tween_time)
 					open_close.Parent:FindFirstChild("Base").Transparency = 1
 
 				else
@@ -1080,8 +1080,8 @@ function _G.library:AddWindow(title, options)
 
 					Resizer.Active = true
 
-					Resize(open_close, {Rotation = 90}, options.tween_time)
-					Resize(Window, {Size = UDim2.new(0, Window.AbsoluteSize.X, 0, oldy)}, options.tween_time)
+					_G.Resize(open_close, {Rotation = 90}, options.tween_time)
+					_G.Resize(Window, {Size = UDim2.new(0, Window.AbsoluteSize.X, 0, oldy)}, options.tween_time)
 					open_close.Parent:FindFirstChild("Base").Transparency = 0
 
 				end
@@ -1121,14 +1121,14 @@ function _G.library:AddWindow(title, options)
 					for i, v in next, tab_buttons:GetChildren() do
 						if not (v:IsA("UIListLayout")) then
 							v:GetChildren()[1].ImageColor3 = Color3.fromRGB(52, 53, 56)
-							Resize(v, {Size = UDim2.new(0, v.AbsoluteSize.X, 0, 20)}, options.tween_time)
+							_G.Resize(v, {Size = UDim2.new(0, v.AbsoluteSize.X, 0, 20)}, options.tween_time)
 						end
 					end
 					for i, v in next, tabs:GetChildren() do
 						v.Visible = false
 					end
 
-					Resize(new_button, {Size = UDim2.new(0, new_button.AbsoluteSize.X, 0, 25)}, options.tween_time)
+					_G.Resize(new_button, {Size = UDim2.new(0, new_button.AbsoluteSize.X, 0, 25)}, options.tween_time)
 					new_button:GetChildren()[1].ImageColor3 = Color3.fromRGB(73, 75, 79)
 					new_tab.Visible = true
 				end
@@ -1178,7 +1178,7 @@ function _G.library:AddWindow(title, options)
 						end)
 
 						button.MouseButton1Click:Connect(function()
-							ripple(button, mouse.X, mouse.Y)
+							_G.ripple(button, mouse.X, mouse.Y)
 							pcall(callback)
 						end)
 
@@ -1314,7 +1314,7 @@ function _G.library:AddWindow(title, options)
 													size = max
 												end
 
-												Resize(indicator, {Size = UDim2.new(size or min, 0, 0, 20)}, options.tween_time)
+												_G.Resize(indicator, {Size = UDim2.new(size or min, 0, 0, 20)}, options.tween_time)
 												local p = math.floor((size or min) * 100)
 
 												local maxv = slider_options.max
@@ -1342,7 +1342,7 @@ function _G.library:AddWindow(title, options)
 								new_value = tonumber(new_value) or 0
 								new_value = (((new_value >= 0 and new_value <= 100) and new_value) / 100)
 
-								Resize(indicator, {Size = UDim2.new(new_value or 0, 0, 0, 20)}, options.tween_time)
+								_G.Resize(indicator, {Size = UDim2.new(new_value or 0, 0, 0, 20)}, options.tween_time)
 								local p = math.floor((new_value or 0) * 100)
 
 								local maxv = slider_options.max
@@ -1458,12 +1458,12 @@ function _G.library:AddWindow(title, options)
 							if open then -- Open
 								if dropdown_open then return end
 								dropdown_open = true
-								Resize(box, {Size = UDim2.new(1, 0, 0, len)}, options.tween_time)
-								Resize(indicator, {Rotation = 90}, options.tween_time)
+								_G.Resize(box, {Size = UDim2.new(1, 0, 0, len)}, options.tween_time)
+								_G.Resize(indicator, {Rotation = 90}, options.tween_time)
 							else -- Close
 								dropdown_open = false
-								Resize(box, {Size = UDim2.new(1, 0, 0, 0)}, options.tween_time)
-								Resize(indicator, {Rotation = -90}, options.tween_time)
+								_G.Resize(box, {Size = UDim2.new(1, 0, 0, 0)}, options.tween_time)
+								_G.Resize(indicator, {Rotation = -90}, options.tween_time)
 							end
 
 						end)
@@ -1491,7 +1491,7 @@ function _G.library:AddWindow(title, options)
 									len = 10 * 20
 									objects.CanvasSize = UDim2.new(0, 0, (#objects:GetChildren() - 1) * 0.1, 0)
 								end
-								Resize(box, {Size = UDim2.new(1, 0, 0, len)}, options.tween_time)
+								_G.Resize(box, {Size = UDim2.new(1, 0, 0, len)}, options.tween_time)
 							end
 
 							object.MouseButton1Click:Connect(function()
@@ -1499,8 +1499,8 @@ function _G.library:AddWindow(title, options)
 									dropdown.Text = "      [ " .. n .. " ]"
 									dropdown_open = false
 									open = false
-									Resize(box, {Size = UDim2.new(1, 0, 0, 0)}, options.tween_time)
-									Resize(indicator, {Rotation = -90}, options.tween_time)
+									_G.Resize(box, {Size = UDim2.new(1, 0, 0, 0)}, options.tween_time)
+									_G.Resize(indicator, {Rotation = -90}, options.tween_time)
 									pcall(callback, n)
 								end
 							end)
@@ -1588,7 +1588,7 @@ function _G.library:AddWindow(title, options)
 											h = x / 100
 											s = y / 100
 
-											Resize(palette_indicator, {Position = UDim2.new(0, math.abs(x - 100) - (palette_indicator.AbsoluteSize.X / 2), 0, math.abs(y - 100) - (palette_indicator.AbsoluteSize.Y / 2))}, options.tween_time)
+											_G.Resize(palette_indicator, {Position = UDim2.new(0, math.abs(x - 100) - (palette_indicator.AbsoluteSize.X / 2), 0, math.abs(y - 100) - (palette_indicator.AbsoluteSize.Y / 2))}, options.tween_time)
 
 											update()
 											RS.Heartbeat:Wait()
@@ -1599,7 +1599,7 @@ function _G.library:AddWindow(title, options)
 											local y = ((palette.AbsoluteSize.Y - (mouse_location.Y - palette.AbsolutePosition.Y)) + 1.5)
 											v = y / 100
 
-											Resize(saturation_indicator, {Position = UDim2.new(0, 0, 0, math.abs(y - 100))}, options.tween_time)
+											_G.Resize(saturation_indicator, {Position = UDim2.new(0, 0, 0, math.abs(y - 100))}, options.tween_time)
 
 											update()
 											RS.Heartbeat:Wait()
@@ -1967,10 +1967,10 @@ function _G.library:AddWindow(title, options)
 						local open = false
 						button.MouseButton1Click:Connect(function()
 							if open then -- Close
-								Resize(toggle, {Rotation = 0}, options.tween_time)
+								_G.Resize(toggle, {Rotation = 0}, options.tween_time)
 								objects.Visible = false
 							else -- Open
-								Resize(toggle, {Rotation = 90}, options.tween_time)
+								_G.Resize(toggle, {Rotation = 90}, options.tween_time)
 								objects.Visible = true
 							end
 
@@ -1979,7 +1979,7 @@ function _G.library:AddWindow(title, options)
 
 						spawn(function()
 							while true do
-								Resize(folder, {Size = UDim2.new(1, 0, 0, (open and gFolderLen() or 20))}, options.tween_time)
+								_G.Resize(folder, {Size = UDim2.new(1, 0, 0, (open and gFolderLen() or 20))}, options.tween_time)
 								wait()
 							end
 						end)

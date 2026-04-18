@@ -7,7 +7,6 @@ do
     })
 
     _G.ScriptTab:AddLabel("------------------------------------------------------------------")
-    print(Console:Get())
 
     local HA = _G.ScriptTab:AddHorizontalAlignment()
 
