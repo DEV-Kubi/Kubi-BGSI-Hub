@@ -1178,7 +1178,6 @@ function _G.library:AddWindow(title, options)
 						end)
 
 						button.MouseButton1Click:Connect(function()
-							_G.ripple(button, mouse.X, mouse.Y)
 							pcall(callback)
 						end)
 
