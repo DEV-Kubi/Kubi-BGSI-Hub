@@ -1,1 +1,1 @@
-loadstring("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/ui/framework.lua?token=GHSAT0AAAAAAD22JRBLCYUUU6XDE5XQJXP62PDWSQQ")()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/ui/framework.lua", true))()

@@ -12,19 +12,19 @@ do
     _G.ScriptTab = _G.Window:AddTab("Scripting")
 
     if _G.MainTab then
-        loadstring("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/tabs/main/main.lua?token=GHSAT0AAAAAAD22JRBLLST2XQ5SFBMJQNUC2PDXZHQ")()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/tabs/main/main.lua"))()
     end
 
     if _G.FarmTab then
-        loadstring("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/tabs/farming/farming.lua?token=GHSAT0AAAAAAD22JRBLRAS3D6SJVOQVERAI2PDXZPA")()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/tabs/farming/farming.lua"))()
     end
 
     if _G.EggsTab then
-        loadstring("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/tabs/eggs/eggs.lua?token=GHSAT0AAAAAAD22JRBLTRM44QNGZ4UL46BC2PDX2AA")()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/tabs/eggs/eggs.lua"))()
     end
 
     if _G.ScriptTab then
-        loadstring("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/tabs/scripting/scripting.lua?token=GHSAT0AAAAAAD22JRBL63MTAGD5WGMO7TOQ2PDX2PA")()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/tabs/scripting/scripting.lua"))()
     end
 
     _G.MainTab:Show()
