@@ -26,7 +26,7 @@ do
 	end)
 
     _G.ScriptTab:AddButton("Unload GUI", function()
-        local imgui = game:GetService("CoreGui"):FindFirstChild("imgui")
+        local imgui = game:GetService("CoreGui"):WaitForChild("imgui")
         if imgui then imgui:Destroy() end
     end)
 end
