@@ -1,1 +1,1 @@
-local framework = loadstring("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/ui/framework.lua?token=GHSAT0AAAAAAD22JRBLCYUUU6XDE5XQJXP62PDWSQQ")
+loadstring("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/ui/framework.lua?token=GHSAT0AAAAAAD22JRBLCYUUU6XDE5XQJXP62PDWSQQ")
