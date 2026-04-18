@@ -2022,4 +2022,4 @@ function library:AddWindow(title, options)
 	return window_data, Window
 end
 
-loadstring()
+loadstring("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/ui/mainui.lua?token=GHSAT0AAAAAAD22JRBKXP424PGCV2GTO6W42PDWRJQ")
