@@ -5,7 +5,7 @@ do
 
     local turned = false
 
-    local fastHatch = _G.EggsTab:AddSwitch("Fast Hatch", function(bool)
+    local fastHatch = _G.EggsTab:AddSwitch("Fast Hatch (Spams R Button)", function(bool)
         turned = false
 		if bool then
             while task.wait(0.1) do
@@ -18,7 +18,6 @@ do
             end
         else
             turned = true
-            print("fast hatched turned off - test 1")
         end
 	end)
 	fastHatch:Set(false)

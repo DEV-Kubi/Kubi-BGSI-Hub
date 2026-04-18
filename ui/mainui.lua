@@ -8,6 +8,7 @@ do
 
 	_G.MainTab = _G.Window:AddTab("Main")
     _G.FarmTab = _G.Window:AddTab("Farming")
+    _G.WorldTab = _G.Window:AddTab("World")
     _G.EggsTab = _G.Window:AddTab("Eggs")
     _G.ScriptTab = _G.Window:AddTab("Scripting")
 
@@ -17,6 +18,10 @@ do
 
     if _G.FarmTab then
         loadstring(game:HttpGet("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/tabs/farming/farming.lua"))()
+    end
+
+    if _G.WorldTab then
+        loadstring(game:HttpGet(""))()
     end
 
     if _G.EggsTab then
