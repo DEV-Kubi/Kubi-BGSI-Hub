@@ -19,13 +19,9 @@ do
 
     _G.ScriptTab:AddKeybind("GUI Bind", function(key)
 		if key then
-            task.wait(1)
-            _G.Window["toggle_key"] = key
             _G.ui_options["toggle_key"] = key
         end
-	end, {
-		["standard"] = Enum.KeyCode.RightShift
-    })
+	end)
 
     _G.ScriptTab:AddButton("Unload GUI", function()
         local imgui = game:GetService("CoreGui"):FindFirstChild("imgui")

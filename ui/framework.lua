@@ -6,7 +6,7 @@
 
 _G.ui_options = {
 	main_color = Color3.fromRGB(41, 74, 122),
-	min_size = Vector2.new(400, 300),
+	min_size = Vector2.new(400, 250),
 	toggle_key = Enum.KeyCode.RightShift,
 	can_resize = true,
 }
@@ -896,7 +896,11 @@ local function ripple(button, x, y)
 	spawn(function()
 		button.ClipsDescendants = true
 
-		local circle = Prefabs:FindFirstChild("Circle"):Clone()
+		local circle = Prefabs:FindFirstChild("Circle")
+		
+		if circle then
+			circle:Clone()
+		end
 
 		circle.Parent = button
 		circle.ZIndex = 1000
