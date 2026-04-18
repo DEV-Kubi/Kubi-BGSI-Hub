@@ -10,7 +10,8 @@ do
                 VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.R, false, game)
             end
         else
-            bool = false
+            VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.R, false, game)
+            fastHatch:Set(false)
         end
 	end)
 	fastHatch:Set(false)
