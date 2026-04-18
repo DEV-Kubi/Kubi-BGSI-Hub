@@ -7,9 +7,9 @@ do
         turned = false
 		if bool then
             while task.wait(1) do
-                for i,v in pairs(Tutorial._activePickups) do
+                for i,v in pairs(_G.Tutorial._activePickups) do
                     v:Destroy()
-                    Tutorial._activePickups[tostring(i)] = nil
+                    _G.Tutorial._activePickups[tostring(i)] = nil
                     game:GetService("ReplicatedStorage").Remotes.Pickups.CollectPickup:FireServer(i)
                     if turned == true then
                         break
