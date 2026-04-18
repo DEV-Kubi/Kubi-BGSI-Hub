@@ -1,7 +1,7 @@
 do
     _G.Window = _G.library:AddWindow("Kubi BGSI Hub", {
 		main_color = Color3.fromRGB(102, 153, 255),
-		min_size = Vector2.new(650, 650),
+		min_size = Vector2.new(650, 450),
 		toggle_key = Enum.KeyCode.RightShift,
 		can_resize = true,
 	})
