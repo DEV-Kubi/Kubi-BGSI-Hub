@@ -1,8 +1,6 @@
 do
     _G.ScriptTab:AddLabel("Executor")
 
-    _G.ScriptTab:AddLabel("")
-
     local Console = _G.ScriptTab:AddConsole({
         ["y"] = 100,
         ["source"] = "Lua",
@@ -34,6 +32,4 @@ do
             if imgui then imgui:Destroy() end
         end
     end)
-
-    _G.ScriptTab:AddLabel("")
 end
