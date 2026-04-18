@@ -922,8 +922,8 @@ local function ripple(button, x, y)
 	end)
 end
 
-local windows = 0
-local library = {}
+_G.windows = 0
+_G.library = {}
 
 local function format_windows()
 	local ull = Prefabs:FindFirstChild("UIListLayout"):Clone()
@@ -943,12 +943,12 @@ local function format_windows()
 	end
 end
 
-function library:FormatWindows()
+function _G.library:FormatWindows()
 	format_windows()
 end
 
 function _G.library:AddWindow(title, options)
-	windows = windows + 1
+	_G.windows = _G.windows + 1
 	local dropdown_open = false
 	title = tostring(title or "New Window")
 	options = (typeof(options) == "table") and options or ui_options
@@ -958,7 +958,7 @@ function _G.library:AddWindow(title, options)
 	Window.Parent = Windows
 	Window:FindFirstChild("Title").Text = title
 	Window.Size = UDim2.new(0, options.min_size.X, 0, options.min_size.Y)
-	Window.ZIndex = Window.ZIndex + (windows * 10)
+	Window.ZIndex = Window.ZIndex + (_G.windows * 10)
 
 	do -- Altering Window Color
 		local Title = Window:FindFirstChild("Title")
@@ -984,7 +984,7 @@ function _G.library:AddWindow(title, options)
 
 	local Resizer = Window:WaitForChild("Resizer")
 
-	local window_data = {}
+	_G.window_data = {}
 	Window.Draggable = true
 
 	do -- Resize Window
@@ -1100,7 +1100,7 @@ function _G.library:AddWindow(title, options)
 		local tab_buttons = tab_selection:FindFirstChild("TabButtons")
 
 		do -- Add Tab
-			function window_data:AddTab(tab_name)
+			function _G.window_data:AddTab(tab_name)
 				local tab_data = {}
 				tab_name = tostring(tab_name or "New Tab")
 				tab_selection.Visible = true
@@ -1109,12 +1109,12 @@ function _G.library:AddWindow(title, options)
 				new_button.Parent = tab_buttons
 				new_button.Text = tab_name
 				new_button.Size = UDim2.new(0, gNameLen(new_button), 0, 20)
-				new_button.ZIndex = new_button.ZIndex + (windows * 10)
-				new_button:GetChildren()[1].ZIndex = new_button:GetChildren()[1].ZIndex + (windows * 10)
+				new_button.ZIndex = new_button.ZIndex + (_G.windows * 10)
+				new_button:GetChildren()[1].ZIndex = new_button:GetChildren()[1].ZIndex + (_G.windows * 10)
 
 				local new_tab = Prefabs:FindFirstChild("Tab"):Clone()
 				new_tab.Parent = tabs
-				new_tab.ZIndex = new_tab.ZIndex + (windows * 10)
+				new_tab.ZIndex = new_tab.ZIndex + (_G.windows * 10)
 
 				local function show()
 					if dropdown_open then return end
@@ -1151,7 +1151,7 @@ function _G.library:AddWindow(title, options)
 						label.Parent = new_tab
 						label.Text = label_text
 						label.Size = UDim2.new(0, gNameLen(label), 0, 20)
-						label.ZIndex = label.ZIndex + (windows * 10)
+						label.ZIndex = label.ZIndex + (_G.windows * 10)
 
 						return label
 					end
@@ -1165,8 +1165,8 @@ function _G.library:AddWindow(title, options)
 						button.Parent = new_tab
 						button.Text = button_text
 						button.Size = UDim2.new(0, gNameLen(button), 0, 20)
-						button.ZIndex = button.ZIndex + (windows * 10)
-						button:GetChildren()[1].ZIndex = button:GetChildren()[1].ZIndex + (windows * 10)
+						button.ZIndex = button.ZIndex + (_G.windows * 10)
+						button:GetChildren()[1].ZIndex = button:GetChildren()[1].ZIndex + (_G.windows * 10)
 
 						spawn(function()
 							while true do
@@ -1196,9 +1196,9 @@ function _G.library:AddWindow(title, options)
 						switch.Parent = new_tab
 						switch:FindFirstChild("Title").Text = switch_text
 
-						switch:FindFirstChild("Title").ZIndex = switch:FindFirstChild("Title").ZIndex + (windows * 10)
-						switch.ZIndex = switch.ZIndex + (windows * 10)
-						switch:GetChildren()[1].ZIndex = switch:GetChildren()[1].ZIndex + (windows * 10)
+						switch:FindFirstChild("Title").ZIndex = switch:FindFirstChild("Title").ZIndex + (_G.windows * 10)
+						switch.ZIndex = switch.ZIndex + (_G.windows * 10)
+						switch:GetChildren()[1].ZIndex = switch:GetChildren()[1].ZIndex + (_G.windows * 10)
 
 						spawn(function()
 							while true do
@@ -1237,8 +1237,8 @@ function _G.library:AddWindow(title, options)
 
 						textbox.Parent = new_tab
 						textbox.PlaceholderText = textbox_text
-						textbox.ZIndex = textbox.ZIndex + (windows * 10)
-						textbox:GetChildren()[1].ZIndex = textbox:GetChildren()[1].ZIndex + (windows * 10)
+						textbox.ZIndex = textbox.ZIndex + (_G.windows * 10)
+						textbox:GetChildren()[1].ZIndex = textbox:GetChildren()[1].ZIndex + (_G.windows * 10)
 
 						textbox.FocusLost:Connect(function(ep)
 							if ep then
@@ -1269,14 +1269,14 @@ function _G.library:AddWindow(title, options)
 						local slider = Prefabs:FindFirstChild("Slider"):Clone()
 
 						slider.Parent = new_tab
-						slider.ZIndex = slider.ZIndex + (windows * 10)
+						slider.ZIndex = slider.ZIndex + (_G.windows * 10)
 
 						local title = slider:FindFirstChild("Title")
 						local indicator = slider:FindFirstChild("Indicator")
 						local value = slider:FindFirstChild("Value")
-						title.ZIndex = title.ZIndex + (windows * 10)
-						indicator.ZIndex = indicator.ZIndex + (windows * 10)
-						value.ZIndex = value.ZIndex + (windows * 10)
+						title.ZIndex = title.ZIndex + (_G.windows * 10)
+						indicator.ZIndex = indicator.ZIndex + (_G.windows * 10)
+						value.ZIndex = value.ZIndex + (_G.windows * 10)
 
 						title.Text = slider_text
 
@@ -1374,10 +1374,10 @@ function _G.library:AddWindow(title, options)
 						local keybind = Prefabs:FindFirstChild("Keybind"):Clone()
 						local input = keybind:FindFirstChild("Input")
 						local title = keybind:FindFirstChild("Title")
-						keybind.ZIndex = keybind.ZIndex + (windows * 10)
-						input.ZIndex = input.ZIndex + (windows * 10)
-						input:GetChildren()[1].ZIndex = input:GetChildren()[1].ZIndex + (windows * 10)
-						title.ZIndex = title.ZIndex + (windows * 10)
+						keybind.ZIndex = keybind.ZIndex + (_G.windows * 10)
+						input.ZIndex = input.ZIndex + (_G.windows * 10)
+						input:GetChildren()[1].ZIndex = input:GetChildren()[1].ZIndex + (_G.windows * 10)
+						title.ZIndex = title.ZIndex + (_G.windows * 10)
 
 						keybind.Parent = new_tab
 						title.Text = "  " .. keybind_name
@@ -1435,11 +1435,11 @@ function _G.library:AddWindow(title, options)
 						local box = dropdown:FindFirstChild("Box")
 						local objects = box:FindFirstChild("Objects")
 						local indicator = dropdown:FindFirstChild("Indicator")
-						dropdown.ZIndex = dropdown.ZIndex + (windows * 10)
-						box.ZIndex = box.ZIndex + (windows * 10)
-						objects.ZIndex = objects.ZIndex + (windows * 10)
-						indicator.ZIndex = indicator.ZIndex + (windows * 10)
-						dropdown:GetChildren()[3].ZIndex = dropdown:GetChildren()[3].ZIndex + (windows * 10)
+						dropdown.ZIndex = dropdown.ZIndex + (_G.windows * 10)
+						box.ZIndex = box.ZIndex + (_G.windows * 10)
+						objects.ZIndex = objects.ZIndex + (_G.windows * 10)
+						indicator.ZIndex = indicator.ZIndex + (_G.windows * 10)
+						dropdown:GetChildren()[3].ZIndex = dropdown:GetChildren()[3].ZIndex + (_G.windows * 10)
 
 						dropdown.Parent = new_tab
 						dropdown.Text = "      " .. dropdown_name
@@ -1476,7 +1476,7 @@ function _G.library:AddWindow(title, options)
 
 							object.Parent = objects
 							object.Text = n
-							object.ZIndex = object.ZIndex + (windows * 10)
+							object.ZIndex = object.ZIndex + (_G.windows * 10)
 
 							object.MouseEnter:Connect(function()
 								object.BackgroundColor3 = options.main_color
@@ -1522,14 +1522,14 @@ function _G.library:AddWindow(title, options)
 						local color_picker = Prefabs:FindFirstChild("ColorPicker"):Clone()
 
 						color_picker.Parent = new_tab
-						color_picker.ZIndex = color_picker.ZIndex + (windows * 10)
+						color_picker.ZIndex = color_picker.ZIndex + (_G.windows * 10)
 
 						local palette = color_picker:FindFirstChild("Palette")
 						local sample = color_picker:FindFirstChild("Sample")
 						local saturation = color_picker:FindFirstChild("Saturation")
-						palette.ZIndex = palette.ZIndex + (windows * 10)
-						sample.ZIndex = sample.ZIndex + (windows * 10)
-						saturation.ZIndex = saturation.ZIndex + (windows * 10)
+						palette.ZIndex = palette.ZIndex + (_G.windows * 10)
+						sample.ZIndex = sample.ZIndex + (_G.windows * 10)
+						saturation.ZIndex = saturation.ZIndex + (_G.windows * 10)
 
 						do -- Color Picker Math
 							local h = 0
@@ -1569,8 +1569,8 @@ function _G.library:AddWindow(title, options)
 
 							local palette_indicator = palette:FindFirstChild("Indicator")
 							local saturation_indicator = saturation:FindFirstChild("Indicator")
-							palette_indicator.ZIndex = palette_indicator.ZIndex + (windows * 10)
-							saturation_indicator.ZIndex = saturation_indicator.ZIndex + (windows * 10)
+							palette_indicator.ZIndex = palette_indicator.ZIndex + (_G.windows * 10)
+							saturation_indicator.ZIndex = saturation_indicator.ZIndex + (_G.windows * 10)
 
 							local Held = false
 							UIS.InputBegan:Connect(function(inputObject)
@@ -1639,20 +1639,20 @@ function _G.library:AddWindow(title, options)
 						local console = Prefabs:FindFirstChild("Console"):Clone()
 
 						console.Parent = new_tab
-						console.ZIndex = console.ZIndex + (windows * 10)
+						console.ZIndex = console.ZIndex + (_G.windows * 10)
 						console.Size = UDim2.new(1, 0, console_options.full and 1 or 0, console_options.y)
 
 						local sf = console:GetChildren()[1]
 						local Source = sf:FindFirstChild("Source")
 						local Lines = sf:FindFirstChild("Lines")
-						Source.ZIndex = Source.ZIndex + (windows * 10)
-						Lines.ZIndex = Lines.ZIndex + (windows * 10)
+						Source.ZIndex = Source.ZIndex + (_G.windows * 10)
+						Lines.ZIndex = Lines.ZIndex + (_G.windows * 10)
 
 						Source.TextEditable = not console_options.readonly
 
 						do -- Syntax Zindex
 							for i,v in next, Source:GetChildren() do
-								v.ZIndex = v.ZIndex + (windows * 10) + 1
+								v.ZIndex = v.ZIndex + (_G.windows * 10) + 1
 							end
 						end
 						Source.Comments.ZIndex = Source.Comments.ZIndex + 1
@@ -1936,11 +1936,11 @@ function _G.library:AddWindow(title, options)
 						local button = folder:FindFirstChild("Button")
 						local objects = folder:FindFirstChild("Objects")
 						local toggle = button:FindFirstChild("Toggle")
-						folder.ZIndex = folder.ZIndex + (windows * 10)
-						button.ZIndex = button.ZIndex + (windows * 10)
-						objects.ZIndex = objects.ZIndex + (windows * 10)
-						toggle.ZIndex = toggle.ZIndex + (windows * 10)
-						button:GetChildren()[1].ZIndex = button:GetChildren()[1].ZIndex + (windows * 10)
+						folder.ZIndex = folder.ZIndex + (_G.windows * 10)
+						button.ZIndex = button.ZIndex + (_G.windows * 10)
+						objects.ZIndex = objects.ZIndex + (_G.windows * 10)
+						toggle.ZIndex = toggle.ZIndex + (_G.windows * 10)
+						button:GetChildren()[1].ZIndex = button:GetChildren()[1].ZIndex + (_G.windows * 10)
 
 						folder.Parent = new_tab
 						button.Text = "      " .. folder_name
@@ -2014,12 +2014,12 @@ function _G.library:AddWindow(title, options)
 	do
 		for i, v in next, Window:GetDescendants() do
 			if hasprop(v, "ZIndex") then
-				v.ZIndex = v.ZIndex + (windows * 10)
+				v.ZIndex = v.ZIndex + (_G.windows * 10)
 			end
 		end
 	end
 
-	return window_data, Window
+	return _G.window_data, Window
 end
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/DEV-Kubi/Kubi-BGSI-Hub/refs/heads/main/ui/mainui.lua", true))()

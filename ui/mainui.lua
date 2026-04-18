@@ -28,5 +28,5 @@ do
     end
 
     _G.MainTab:Show()
-    library:FormatWindows()
+    _G.library:FormatWindows()
 end
