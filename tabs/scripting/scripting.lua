@@ -1,7 +1,7 @@
 do
     _G.ScriptTab:AddLabel("Executor")
 
-    _G.ScriptTab:AddLabel("-------------------------------------------------------------------------------------")
+    _G.ScriptTab:AddLabel("----------------------------------------------------------------------------")
 
     local Console = _G.ScriptTab:AddConsole({
         ["y"] = 100,
